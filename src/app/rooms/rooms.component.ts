@@ -17,7 +17,8 @@ export class RoomsComponent implements OnInit {
     bookedRooms: 5,
   };
 
-  roomList:RoomList[] = []
+  roomList:RoomList[] = [];
+  title = 'Room  List'
 
   constructor() {}
 
@@ -58,10 +59,28 @@ export class RoomsComponent implements OnInit {
 
   toggle() {
     this.hideRooms = !this.hideRooms;
+    this.title = "Room List News"
   }
 
   selectRoom(room: RoomList){
     console.log(room);
     this.selectedRoom = room
+  }
+
+  addRoom(){
+    const room:RoomList = {
+      roomNumber: 4,
+      roomType: 'Private Suite',
+      amenities: 'AC, Free-Wifi, Bathroom, Kitchen',
+      price: 15000,
+      photos: 'https://media.istockphoto.com/id/1208955086/photo/door-opened-to-bedroom.jpg?s=1024x1024&w=is&k=20&c=6t4VanNXaVaGcZatu9P1dBSJG1fa1NHeft9yZiFkIIc=',
+      checkinTime: new Date('11-Nov-2021'),
+      checkoutTime: new Date('12-Nov-2021'),
+      rating: 4.7
+    }
+
+    // this.roomList.push(room);
+    // for change detection
+    this.roomList = [...this.roomList, room];
   }
 }
