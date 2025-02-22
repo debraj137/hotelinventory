@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 
@@ -19,7 +19,8 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   };
 
   roomList:RoomList[] = [];
-  @ViewChild(HeaderComponent, {static: true}) headerComponent!: HeaderComponent
+  @ViewChild(HeaderComponent, {static: true}) headerComponent!: HeaderComponent;
+  @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
   title = 'Room  List'
 
   constructor() {}
@@ -29,6 +30,8 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   }
   ngAfterViewInit(): void {
     console.log(this.headerComponent);
+    console.log(this.headerChildrenComponent.last.title = 'Last Title');
+    this.headerChildrenComponent.last.title = 'Last Title'
   }
   ngDoCheck(): void {
     console.log('on changes is called');
