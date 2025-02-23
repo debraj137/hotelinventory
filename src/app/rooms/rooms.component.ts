@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, QueryList, SkipSelf, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
@@ -24,7 +24,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
   title = 'Room  List'
 
-  constructor(private roomsService: RoomsService) {}
+  constructor(@SkipSelf() private roomsService: RoomsService) {}
   ngAfterViewChecked(): void {
     //give error in dev mode
     // this.headerComponent.title = "Hotel Tittle After View Checked"

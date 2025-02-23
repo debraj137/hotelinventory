@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, ComponentFactoryResolver, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ComponentFactoryResolver, ElementRef, OnInit, Optional, ViewChild, ViewContainerRef } from '@angular/core';
 import { RoomsComponent } from './rooms/rooms.component';
+import { LoggerService } from './logger.service';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +14,12 @@ export class AppComponent implements OnInit{
   // @ViewChild('user', {read: ViewContainerRef}) vcr!: ViewContainerRef;
   @ViewChild('name',{static:true}) name!: ElementRef
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver){}
+  constructor(private componentFactoryResolver: ComponentFactoryResolver,
+    @Optional() private loggerService: LoggerService
+  ){}
   ngOnInit(): void {
-    this.name.nativeElement.innerText = 'Hilton Hotel'
+    this.name.nativeElement.innerText = 'Hilton Hotel';
+    this.loggerService.log('AppComponent.ngOnInit()');
   }
 
   // ngAfterViewInit(): void {
