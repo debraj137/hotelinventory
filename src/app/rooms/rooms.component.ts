@@ -2,6 +2,7 @@ import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, QueryList,
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-rooms',
@@ -11,14 +12,14 @@ import { RoomsService } from './services/rooms.service';
 export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
   hotelName = 'Hilton Hotel!';
   numberOfRooms = 10;
-  hideRooms = false;
+  hideRooms = true;
   selectedRoom!: RoomList
   rooms: Room = {
     totalRooms: 20,
     availableRooms: 10,
     bookedRooms: 5,
   };
-
+  totalBytes = 0;
   roomList:RoomList[] = [];
   @ViewChild(HeaderComponent, {static: true}) headerComponent!: HeaderComponent;
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
@@ -41,7 +42,36 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   ngOnInit(): void {
     console.log(this.headerComponent);
-    this.roomList = this.roomsService.getRooms();
+    console.log(this.roomsService.getRooms());
+    this.roomsService.getRooms().subscribe(rooms=>{
+      this.roomList = rooms
+    })
+
+    this.roomsService.getPhotos().subscribe(event=>{
+      switch (event.type) {
+        case HttpEventType.Sent:{
+          console.log('request has been made');
+          break;
+        }
+
+
+        case HttpEventType.ResponseHeader:{
+          console.log('request success');
+          break;
+        }
+
+
+        case HttpEventType.DownloadProgress:{
+          this.totalBytes = event.loaded;
+          break;
+        }
+
+        case HttpEventType.Response:{
+        console.log(event.body)
+        }
+
+      }
+    })
   }
 
   toggle() {
@@ -56,7 +86,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
   addRoom(){
     const room:RoomList = {
-      roomNumber: 4,
+      roomNumber: '4',
       roomType: 'Private Suite',
       amenities: 'AC, Free-Wifi, Bathroom, Kitchen',
       price: 15000,
@@ -68,6 +98,33 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
 
     // this.roomList.push(room);
     // for change detection
-    this.roomList = [...this.roomList, room];
+    // this.roomList = [...this.roomList, room];
+
+    this.roomsService.addRoom(room).subscribe((data)=>{
+      this.roomList = data;
+    })
+
   }
+
+  editRoom(){
+    const room:RoomList = {
+      roomNumber: '3',
+      roomType: 'Private Suite',
+      amenities: 'AC, Free-Wifi, Bathroom, Kitchen',
+      price: 15000,
+      photos: 'https://media.istockphoto.com/id/1208955086/photo/door-opened-to-bedroom.jpg?s=1024x1024&w=is&k=20&c=6t4VanNXaVaGcZatu9P1dBSJG1fa1NHeft9yZiFkIIc=',
+      checkinTime: new Date('11-Nov-2021'),
+      checkoutTime: new Date('12-Nov-2021'),
+      rating: 4.7
+    }
+
+    this.roomsService.editRoom(room).subscribe(data=>{
+      this.roomList = data;
+    })
+  }
+
+  deleteRoom(){
+    this.roomsService.deleteRoom('3').subscribe((data)=>{
+      this.roomList = data;
+  })}
 }
