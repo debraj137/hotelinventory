@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { RoomList } from '../rooms';
 import { APP_SERVICE_CONFIG } from 'src/app/AppConfig/appconfig.service';
 import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 // import { shareReplay } from 'rxjs/operator';
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,7 @@ export class RoomsService {
 
 
   getRooms(){
+    // const headers = new HttpHeaders({'token':'123ad3434'})
     return this.http.get<RoomList[]>('/api/rooms');
   }
 
