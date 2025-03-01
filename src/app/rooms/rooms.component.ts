@@ -3,6 +3,7 @@ import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { HttpEventType } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-rooms',
@@ -20,6 +21,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     bookedRooms: 5,
   };
   totalBytes = 0;
+  subscription!: Subscription
   roomList:RoomList[] = [];
   @ViewChild(HeaderComponent, {static: true}) headerComponent!: HeaderComponent;
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
