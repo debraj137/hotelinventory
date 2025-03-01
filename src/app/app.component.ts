@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ComponentFactoryResolver, ElementRef, Inject,
 import { RoomsComponent } from './rooms/rooms.component';
 import { LoggerService } from './logger.service';
 import { localStorageToken } from './localstorage.token';
+import { InitService } from './init.service';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +18,11 @@ export class AppComponent implements OnInit{
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
     @Optional() private loggerService: LoggerService,
-    @Inject(localStorageToken) private localStorage: any
-  ){}
+    @Inject(localStorageToken) private localStorage: any,
+    private initService: InitService
+  ){
+    console.log("this.initService.config: ",this.initService.config);
+  }
   ngOnInit(): void {
     this.name.nativeElement.innerText = 'Hilton Hotel';
     this.loggerService.log('AppComponent.ngOnInit()');
