@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
   email:string = '';
   password:string = '';
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
   }
@@ -16,6 +17,8 @@ export class LoginComponent implements OnInit {
   login(){
     if(this.email == 'admin@gmail.com' && this.password == 'admin'){
       alert('Logged in successfully');
+      // this.route.navigate(['/rooms','add'])
+      this.route.navigateByUrl('/rooms/add')
     }
   }
 
