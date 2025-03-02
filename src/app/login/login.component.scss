@@ -1,0 +1,116 @@
+/* General Body Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login_form_container{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+/* Form container styling */
+form {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Form heading style */
+form h2 {
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Input field styles */
+.form-group {
+  position: relative;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: #4CAF50;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+.form-control::placeholder {
+  color: #bbb;
+  font-style: italic;
+}
+
+.form-control.ng-dirty.ng-invalid {
+  border-color: red;
+  background-color: #fce4e4;
+}
+
+/* Error message styling */
+.form-group div {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Button styling */
+.btn {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+.btn:active {
+  background-color: #3e8e41;
+}
+
+/* Hover effect customization */
+input[hinvHover="green"]:hover {
+  border-color: #4CAF50;
+  background-color: #f1fdf1;
+}
+
+input[hinvHover="steelblue"]:hover {
+  border-color: steelblue;
+  background-color: #f1f9fc;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 600px) {
+  form {
+    width: 90%;
+  }
+}
