@@ -1,7 +1,7 @@
 <div class="login_form_container">
   <form>
     <div class="form-group">
-        <input #emailControl="ngModel" hinvEmailvalidator appHover="green" type="email" class="form-control" name="name" [(ngModel)]="email" placeholder="Provide your username">
+        <input #emailControl="ngModel" appEmailvalidator appHover="green" type="email" class="form-control" name="name" [(ngModel)]="email" placeholder="Provide your username">
         <div>
             {{emailControl.errors | json}}
         </div>
