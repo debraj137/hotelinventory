@@ -8,8 +8,10 @@
 <div *ngIf="selectedRoom">
   {{selectedRoom | json}}
 </div>
+<router-outlet></router-outlet>
 <div>
-  <button (click)="addRoom()">Add Room</button>
+  <!-- <button (click)="addRoom()">Add Room</button> -->
+  <button routerLink="add">Add Room</button>
 </div>
 <div *ngIf="rooms.availableRooms > 0">
 <app-rooms-list [rooms]="roomList"
@@ -21,3 +23,4 @@
 <button (click)="deleteRoom()">Delete Room</button>
 
 <h1>{{totalBytes}} loaded</h1>
+
