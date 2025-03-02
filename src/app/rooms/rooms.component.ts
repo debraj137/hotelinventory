@@ -4,6 +4,7 @@ import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { HttpEventType } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-rooms',
@@ -27,7 +28,8 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
   title = 'Room  List'
 
-  constructor(@SkipSelf() private roomsService: RoomsService) {}
+  constructor(@SkipSelf() private roomsService: RoomsService,
+private configService: ConfigService) {}
   ngAfterViewChecked(): void {
     //give error in dev mode
     // this.headerComponent.title = "Hotel Tittle After View Checked"
