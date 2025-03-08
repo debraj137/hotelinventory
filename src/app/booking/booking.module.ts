@@ -9,7 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     BookingComponent
@@ -22,7 +23,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule,
+    MatIconModule
   ]
 })
 export class BookingModule { }

@@ -29,11 +29,11 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-   <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Checkout Date</mat-label>
-    <input matInput [matDatepicker]="checkout" formControlName="checkoutDate" />
-    <mat-datepicker-toggle matSuffix [for]="checkout"></mat-datepicker-toggle>
-    <mat-datepicker #checkout></mat-datepicker>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Checkout Date</mat-label>
+      <input matInput [matDatepicker]="checkout" formControlName="checkoutDate" />
+      <mat-datepicker-toggle matSuffix [for]="checkout"></mat-datepicker-toggle>
+      <mat-datepicker #checkout></mat-datepicker>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Booking Date</mat-label>
@@ -41,14 +41,7 @@
       <mat-datepicker-toggle matSuffix [for]="booking"></mat-datepicker-toggle>
       <mat-datepicker #booking></mat-datepicker>
     </mat-form-field>
-        <!-- <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Room</mat-label>
-      <input
-      type = "text"
-      matInput
-      formControlName="roomId"
-      placeholder='roomId'/>
-    </mat-form-field>
+    <!--
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Room</mat-label>
       <input
@@ -97,6 +90,47 @@
       formControlName="roomId"
       placeholder='roomId'/>
     </mat-form-field> -->
+    <div formGroupName="address">
+      <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Address
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Address Line1</mat-label>
+            <input type="text" matInput formControlName="addressLine1" placeholder='AddressLine1' />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Address Line2</mat-label>
+            <input type="text" matInput formControlName="addressLine2" placeholder='AddressLine2' />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>City</mat-label>
+            <input type="text" matInput formControlName="city" placeholder='city' />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>State</mat-label>
+            <input type="text" matInput formControlName="state" placeholder='State' />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Country</mat-label>
+            <input type="text" matInput formControlName="country" placeholder='Country' />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>ZipCode</mat-label>
+            <input type="text" matInput formControlName="zipCode" placeholder='ZipCode' />
+          </mat-form-field>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
     <div>
       <button mat-raised-button color="primary">Book Room</button>
     </div>
