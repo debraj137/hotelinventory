@@ -1,9 +1,11 @@
 .booking_form_container {
-  display: flex;            /* Enable Flexbox */
+  display: flex;
+  flex-direction: column;           /* Enable Flexbox */
   justify-content: center;  /* Center horizontally */
   align-items: center;      /* Center vertically */
   height: 100vh;            /* Take full height of the viewport */
   background-color: #f4f4f4; /* Optional: Add background color */
+  margin-top: 100px;
 }
 
 .example-form {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../services/config.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-booking',
@@ -9,6 +9,9 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class BookingComponent implements OnInit {
   bookingForm!: FormGroup;
+  get guests(){
+   return this.bookingForm.get('guests') as FormArray
+  }
   constructor(private configService: ConfigService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -31,7 +34,10 @@ export class BookingComponent implements OnInit {
         country:[''],
         zipCode:[''],
       }),
-      guestCount:['']
+      guests:this.fb.array([
+        // this.fb.group({guestName: [''], age: new FormControl('')})
+        this.addGuestControl()
+      ])
     })
   }
 
@@ -39,6 +45,29 @@ export class BookingComponent implements OnInit {
     // console.log(this.bookingForm.value);
     //to get roomId use getRawValue
     console.log(this.bookingForm.getRawValue());
+  }
+
+  addGuest(){
+    this.guests.push(
+      this.addGuestControl()
+    )
+  }
+
+  addGuestControl(){
+    return this.fb.group({guestName: [''], age: new FormControl('')})
+  }
+
+  addPassport() {
+    this.bookingForm.addControl('passport', new FormControl(''));
+  }
+
+  deletePassport() {
+    if (this.bookingForm.get('passport')) {
+      this.bookingForm.removeControl('passport');
+    }
+  }
+  removeGuest(i: number) {
+    this.guests.removeAt(i);
   }
 
 }
