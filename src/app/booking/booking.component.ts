@@ -19,14 +19,14 @@ export class BookingComponent implements OnInit {
       // roomId:[''],
       roomId:new FormControl({value:2,disabled:true},{ validators: [Validators.required] }),
       guestEmail:['',{
-       // updateOn: 'blur',
+       updateOn: 'blur',
         validators: [Validators.required, Validators.email],},],
       checkinDate:[''],
       checkoutDate:[''],
       bookingStatus:[''],
       bookingAmount:[''],
       bookingDate:[''],
-      mobileNumber:[''],
+      mobileNumber:['',{updateOn: 'blur'}],
       guestName:['', [
         Validators.required,
         Validators.minLength(5),
@@ -46,9 +46,14 @@ export class BookingComponent implements OnInit {
         this.addGuestControl()
       ]),
       tnc: new FormControl(false, { validators: [Validators.requiredTrue] }),
-    })
+    }, { updateOn: 'blur'})
 
     this.getBookingData();
+
+    this.bookingForm.valueChanges.subscribe((data)=>{
+      console.log(data);
+    })
+
   }
 
   addBooking(){
