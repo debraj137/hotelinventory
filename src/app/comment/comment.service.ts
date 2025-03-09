@@ -11,7 +11,9 @@ export class CommentService {
 
   getComments() {
     return this.http.get<Comments[]>(
-      'https://jsonplaceholder.typicode.com/comments'
+      // 'https://jsonplaceholder.typicode.com/comments'
+      //changes the url to check global error handler
+      'https://jsonplaceholder.typicode.com/commentsrewrwrew'
     );
   }
 }
