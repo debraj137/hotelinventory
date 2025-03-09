@@ -13,9 +13,14 @@
   <!-- <button (click)="addRoom()">Add Room</button> -->
   <button routerLink="add" class="btn btn-success">Add Room</button>
 </div>
+{{priceFilter | json}}
+<div>
+  <input type="number" class="form-control" placeholder="Price" [formControl]="priceFilter" />
+</div>
 <div *ngIf="rooms.availableRooms > 0">
 <app-rooms-list [rooms]="roomList"
 [title]="title"
+[price]="priceFilter.value"
  (selectedRoom)="selectRoom($event)"></app-rooms-list>
 </div>
 <!-- <button (click)="toggle()">Toggle</button>

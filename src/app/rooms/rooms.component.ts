@@ -5,6 +5,7 @@ import { RoomsService } from './services/rooms.service';
 import { HttpEventType } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../services/config.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-rooms',
@@ -27,7 +28,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   @ViewChild(HeaderComponent, {static: true}) headerComponent!: HeaderComponent;
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
   title = 'Room  List'
-
+  priceFilter = new FormControl(0)
   constructor(@SkipSelf() private roomsService: RoomsService,
 private configService: ConfigService) {}
   ngAfterViewChecked(): void {
