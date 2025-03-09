@@ -47,6 +47,8 @@ export class BookingComponent implements OnInit {
       ]),
       tnc: new FormControl(false, { validators: [Validators.requiredTrue] }),
     })
+
+    this.getBookingData();
   }
 
   addBooking(){
@@ -58,6 +60,28 @@ export class BookingComponent implements OnInit {
       guestEmail: '',
       checkinDate: '',
       checkoutDate: '',
+      bookingStatus: '',
+      bookingAmount: '',
+      bookingDate: '',
+      mobileNumber: '',
+      guestName: '',
+      address: {
+        addressLine1: '',
+        addressLine2: '',
+        city: '',
+        state: '',
+        country: '',
+        zipCode: '',
+      },
+      guests: [],
+      tnc: false,
+    });
+  }
+
+  getBookingData() {
+    this.bookingForm.patchValue({
+      guestEmail: 'test@gmail.com',
+      checkinDate: new Date('10-Feb-2020'),
       bookingStatus: '',
       bookingAmount: '',
       bookingDate: '',
