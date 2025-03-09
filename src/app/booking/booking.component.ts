@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../services/config.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { BookingService } from './booking.service';
+import { exhaust, exhaustMap, mergeMap, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-booking',
@@ -12,7 +14,9 @@ export class BookingComponent implements OnInit {
   get guests(){
    return this.bookingForm.get('guests') as FormArray
   }
-  constructor(private configService: ConfigService, private fb: FormBuilder) { }
+  constructor(private configService: ConfigService, private fb: FormBuilder,
+              private bookingService: BookingService
+  ) { }
 
   ngOnInit(): void {
     this.bookingForm = this.fb.group({
@@ -46,12 +50,32 @@ export class BookingComponent implements OnInit {
         this.addGuestControl()
       ]),
       tnc: new FormControl(false, { validators: [Validators.requiredTrue] }),
-    }, { updateOn: 'blur'})
+    },
+    // { updateOn: 'blur'}
+  )
 
     this.getBookingData();
 
-    this.bookingForm.valueChanges.subscribe((data)=>{
-      console.log(data);
+    // this.bookingForm.valueChanges.subscribe((data)=>{
+    //   console.log(data);
+    // });
+
+    // this.bookingForm.valueChanges.pipe(
+    //   mergeMap((data)=>this.bookingService.bookRoom(data))
+    // ).subscribe((data)=>{
+    //   console.log(data)
+    // })
+
+    // this.bookingForm.valueChanges.pipe(
+    //   switchMap((data)=>this.bookingService.bookRoom(data))
+    // ).subscribe((data)=>{
+    //   console.log(data)
+    // })
+
+    this.bookingForm.valueChanges.pipe(
+      exhaustMap((data)=>this.bookingService.bookRoom(data))
+    ).subscribe((data)=>{
+      console.log(data)
     })
 
   }
@@ -60,6 +84,9 @@ export class BookingComponent implements OnInit {
     // console.log(this.bookingForm.value);
     //to get roomId use getRawValue
     console.log(this.bookingForm.getRawValue());
+    // this.bookingService.bookRoom(this.bookingForm.getRawValue()).subscribe((data)=>{
+    //   console.log(data);
+    // })
     this.bookingForm.reset({
       roomId: '2',
       guestEmail: '',
