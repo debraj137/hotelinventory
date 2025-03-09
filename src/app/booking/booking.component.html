@@ -1,6 +1,6 @@
-{{bookingForm.value | json}}
+<!-- {{bookingForm.value | json}}
 {{bookingForm.pristine | json}}
-{{bookingForm.dirty | json}}
+{{bookingForm.dirty | json}} -->
 <div class="booking_form_container">
   <div>
     <button mat-raised-button color="primary" type="button" (click)="addPassport()">Add Passport</button>
@@ -50,6 +50,7 @@
       <input matInput [matDatepicker]="checkout" formControlName="checkoutDate" />
       <mat-datepicker-toggle matSuffix [for]="checkout"></mat-datepicker-toggle>
       <mat-datepicker #checkout></mat-datepicker>
+      {{bookingForm.get('checkoutDate')?.errors | json}}
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Booking Date</mat-label>
